@@ -1,6 +1,6 @@
 name: Build Unsigned
 on:
-  push:
+  workflow_dispatch:
     branches:
       - main
     paths-ignore:
@@ -52,3 +52,8 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: --no-daemon app:assembleFossRelease
+      - name: Upload
+        uses: actions/upload-artifact@v1
+        with:
+          name: ClashForAndroid
+          path: app/build/outputs/apk/foss/release/
